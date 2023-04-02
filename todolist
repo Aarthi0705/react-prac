@@ -1,0 +1,39 @@
+import React, { useState } from "react";
+
+function App() {
+  const [list, setList] = useState("");
+  const [items, setItem] = useState([]);
+
+  function addList(event) {
+    const newV = event.target.value;
+    setList(newV);
+  }
+  function addItem() {
+    setItem((prevI) => {
+      return [...prevI, list];
+    });
+    setList("");
+  }
+  return (
+    <div className="container">
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <div className="form">
+        <input type="text" value={list} onChange={addList} />
+        <button onClick={addItem}>
+          <span>Add</span>
+        </button>
+      </div>
+      <div>
+        <ul>
+          {items.map((todoItem) => (
+            <li>{todoItem}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default App;
